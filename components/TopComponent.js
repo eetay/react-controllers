@@ -3,32 +3,34 @@ import BoxComponent from './BoxComponent'
 
 export class TopComponentController {
   someAction = (info) => {
-    console.log('someAction:', this, info)
+    console.log('someAction called with '+ info)
     return info
   }
   topLevelAction = (info) => {
-    this.ref.setState({text: info})
+    this.ref.setState({titleText: info})
   }
 }
 
 export class TopComponent extends React.PureComponent {
   constructor (props) {
     super(props)
-    this.state = {text: 'TOP LEVEL IS HERE!'}
+    this.state = {
+      titleText: 'TOPLVL TITLE',
+      buttonText: 'TOPLVL: press to change title via my controller'
+    }
   }
 
   buttonClick = () => {
-    this.setState({text: 'TOP LEVEL IS HERE!'})
-    this.props.controller.someAction('hi')
+    this.props.controller.topLevelAction('Title changed using TOPLVL button')
   }
 
   render () {
     return (
       <div>
-        {this.state.text}
+        {this.state.titleText}
         <BoxComponent name="BOX A">BOX A</BoxComponent>
         <button type='button' onClick={this.buttonClick}>
-          someAction('hi')
+          {this.state.buttonText}
         </button>
         <BoxComponent name="BOX B">BOX B</BoxComponent>
       </div>
