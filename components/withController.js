@@ -23,14 +23,18 @@ export default function withController(ControlledComponent, controller) {
     }
 
     getCurrentController = () => {
-      console.log('CUR CONTROLLER 4 '+this.name, this.controllers[this.controllers.length - 1])
+      this.debug('CUR CONTROLLER', this.controllers[this.controllers.length - 1])
       return this.controllers[this.controllers.length - 1]
     }
 
     componentWillUnmount = () => {
       if (this.controller) {
-        console.log('CUR CONTROLLER 4 '+this.name, 'should be deleted')
+        this.debug('CUR CONTROLLER', 'should be deleted')
       }
+    }
+
+    debug = (...args) => {
+      console.log('DEBUG:', this.name, ...args)
     }
 
     render() {
@@ -44,7 +48,7 @@ export default function withController(ControlledComponent, controller) {
             } else {
               this.controllers = controllers
             }
-            console.log('CONTROLLERS 4 '+this.name, this.controllers)
+            this.debug('CONTROLLER CHAIN', this.controllers)
             const moreProps = this.controller ? { ref: this.setRef } : {}
             return (
               <ControllerContext.Provider value={this.getControllers()}>
