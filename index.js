@@ -6,4 +6,4 @@ import withController from './components/withController'
 
 const App = withController(TopComponent, new TopComponentController())
 //ReactDOM.render(<TopComponent dummy="dummy"/>, document.getElementById('root'))
-ReactDOM.render(<App dummy="dummy"><div>SSS</div></App>, document.getElementById('root'))
+ReactDOM.render(<App name="TopComp"><div>SSS</div></App>, document.getElementById('root'))

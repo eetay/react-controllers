@@ -6,33 +6,31 @@ export default function withController(ControlledComponent, controller) {
   return class extends React.PureComponent {
     constructor (props) {
       super(props)
+      this.name = this.props.name || 'unnamed'
+      this.controllers = null
       if (controller) {
         this.controller = controller
         this.controller.ref = React.createRef();
       }
     }
 
-    getController = (controllers) => {
-      if (this.controller) {
-        if (controllers.length > 0) this.controller.__proto__ = controllers[controllers.length - 1]
-        controllers.push(this.controller)
-        this.added = true
-        console.log('CONTROLLERS(ADD):',controllers)
-      }
-      const controller = controllers[controllers.length - 1]
-      return controller
-    }
-
-    removeController = () => {
-      if (this.added) console.log('CONTROLLERS REMOVE')
-    }
-
     setRef = (el) => {
       this.controller.ref = el
     }
 
-    componentWillMount() {
-      if (this.added) console.log('CONTROLLERS REMOVE')
+    getControllers = () => {
+      return this.controllers
+    }
+
+    getCurrentController = () => {
+      console.log('CUR CONTROLLER 4 '+this.name, this.controllers[this.controllers.length - 1])
+      return this.controllers[this.controllers.length - 1]
+    }
+
+    componentWillUnmount = () => {
+      if (this.controller) {
+        console.log('CUR CONTROLLER 4 '+this.name, 'should be deleted')
+      }
     }
 
     render() {
@@ -40,20 +38,21 @@ export default function withController(ControlledComponent, controller) {
         <ControllerContext.Consumer>
         {
           controllers => {
-            const currentController = this.getController(controllers)
-            console.log('CURRENT CONTROLLER:', currentController)
-            const result = (
-              this.controller ? (
-                <ControlledComponent {...this.props} ref={this.setRef} controller={currentController}>
+            if (this.controller) {
+              this.controllers = [...controllers, this.controller]
+              this.controller.__proto__ = controllers[controllers.length - 1]
+            } else {
+              this.controllers = controllers
+            }
+            console.log('CONTROLLERS 4 '+this.name, this.controllers)
+            const moreProps = this.controller ? { ref: this.setRef } : {}
+            return (
+              <ControllerContext.Provider value={this.getControllers()}>
+                <ControlledComponent {...this.props} {...moreProps} controller={this.getCurrentController()}>
                   {this.props.children}
                 </ControlledComponent>
-                ) : (
-                <ControlledComponent {...this.props} controller={currentController}>
-                  {this.props.children}
-                </ControlledComponent>
-              )
+              </ControllerContext.Provider>
             )
-            return result
           }
         }
         </ControllerContext.Consumer>
