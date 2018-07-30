@@ -1,14 +1,18 @@
 This repository is experimental framework for building React based applications
-The concept is to stay away from event-based actions and utilize function-based
-actions and the concept of "stateful controllers" - basically a controller
-is a mini-application with a state of its own, implementing the actions that
-can be used by the UI (React components), and the business logic of the
-application itself
+It should be treated as academic research project
 
+The concept is to stay away from the heavy lifting of event-based actions
+frameworks and utilize good old-fashioned function-based actions and the concept
+of "stateful controllers" - mini-applications with a state of thier own, 
+implementing the actions that can be used by the UI (React components),
+and the business logic of the application itself, in object oriented manner:
+higher-level controller manage the larger application, while lower-level
+controllers manage autonomous parts of the larger application.
 
-The controllers are hirarcical, allowing React components low in the DOM tree
-to trigger high-level application level actions directly without need to send
-messages
+The controllers are heirarcial such that actions not handled by lower-level
+controllers are handled by higher controllers, allowing React components low
+in the DOM tree to trigger high-level application level actions directly without
+sending async messages, by calling the "nearest" controller's actions
 
 Controllers lower in the tree "inherit" (__proto__) the actions from 
 controllers higher in the tree, but each controller has its own state, and the
