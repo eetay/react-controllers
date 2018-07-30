@@ -2,6 +2,13 @@ import React from 'react'
 
 export const ControllerContext = React.createContext([])
 
+const ControllerTools = {
+  // functions all controllers should have
+  setState: function(state) {
+    this.ref.setState(state)
+  }
+}
+
 export default function withController(ControlledComponent, controller) {
   return class extends React.PureComponent {
     constructor (props) {
@@ -44,7 +51,7 @@ export default function withController(ControlledComponent, controller) {
           controllers => {
             if (this.controller) {
               this.controllers = [...controllers, this.controller]
-              this.controller.__proto__ = controllers[controllers.length - 1]
+              this.controller.__proto__ = (controllers.length == 0) ? ControllerTools : controllers[controllers.length - 1]
             } else {
               this.controllers = controllers
             }

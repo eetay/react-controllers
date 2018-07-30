@@ -4,9 +4,6 @@ export class BoxHeaderController {
   constructor(boxName) {
     this.name = boxName
   }
-  setState = (state) => {
-    this.ref.setState(state)
-  }
   boxHeaderAction = (info) => {
     console.log('boxHeaderAction:', this, info)
   }
@@ -25,7 +22,7 @@ export class BoxHeader extends React.PureComponent {
     this.props.controller.topLevelAction('top from box ' + this.props.name + ' header')
   }
 
-  render () {
+  render = () => {
     return (
       <div>
         ---BOX HEADER---
