@@ -20,3 +20,43 @@ Any React component can be wrapped with a 'withController' (higher order
 component) which adds the "nearest" controller to the props of that React
 component, allowing any React component to call controller actions
 
+## example:
+
+The 'withController' makes it possible for ```BoxComponent``` call to ```controller.someAction(...)```
+knowing that it will be handled by "nearest" controller, and if that controller does not have such
+action function, it will search parent controllers as well, allowing higher
+controllers to provide actions to lower UI components
+
+```javascript
+lass BoxComponent extends React.PureComponent {
+  constructor (props) {
+    super(props)
+    this.state = {
+      text: this.props.controller.someAction('Toplevel action from BoxComponent')
+    }
+  }
+
+  render () {
+    console.log('BOX '+this.props.name+' RENDER')
+    const Header = withController(BoxHeader, new BoxHeaderController(this.props.name))
+    console.log('BOX '+this.props.name+' RENDERED')
+    return (
+      <div style={{'borderWidth': '3px', 'borderStyle': 'solid'}}>
+        <div style={{'borderWidth': '3px', 'borderStyle': 'solid', 'borderColor': 'red'}}>
+          <Header name={this.props.name}>---BOX HEADER---</Header>
+        </div>
+        {this.props.children}
+        <div>{this.state.text}</div>
+        <div>---BOX FOOTER---</div>
+      </div>
+    )
+  }
+}
+
+export default withController(BoxComponent)
+```
+
+the ```withController``` function can take a second parameter, which is a new
+controller to control that part of the UI
+
+
