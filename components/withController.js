@@ -4,8 +4,8 @@ export const ControllerContext = React.createContext([])
 
 const ControllerTools = {
   // functions all controllers should have
-  setState: function(state) {
-    this.ref.setState(state)
+  setState: function(state, cb) {
+    this.ref.setState(state, cb)
   }
 }
 
@@ -17,7 +17,7 @@ export default function withController(ControlledComponent, controller) {
       this.controllers = null
       if (controller) {
         this.controller = controller
-        this.controller.ref = React.createRef();
+        this.controller.ref = null
       }
     }
 

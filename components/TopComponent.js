@@ -7,7 +7,7 @@ export class TopComponentController {
     return info
   }
   topLevelAction = (info) => {
-    this.ref.setState({ titleText: 'TopComponentController.topLevelAction() called from ' + info })
+    this.setState({ titleText: 'TopComponentController.topLevelAction() called from ' + info })
   }
 }
 

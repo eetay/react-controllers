@@ -18,15 +18,15 @@ export class BoxHeader extends React.PureComponent {
   }
 
   buttonClick = () => {
-    this.props.controller.topLevelAction(this.props.name + "'s header")
     this.props.controller.setState({text: 'pressed'})
+    this.props.controller.topLevelAction(this.props.name + "'s header")
   }
 
   render = () => {
     return (
       <div>
         ---BOX HEADER---
-        <button type='button'  onClick={this.buttonClick}>
+        <button type='button' onClick={this.buttonClick}>
           controller.topLevelAction(...) ({this.state.text})
         </button>
         ---BOX HEADER---
