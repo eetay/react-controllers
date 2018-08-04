@@ -5,7 +5,7 @@ export const ControllerContext = React.createContext([])
 const ControllerTools = {
   // functions all controllers should have
   setState: function(state, cb) {
-    this.ref.setState(state, cb)
+    this.ref && this.ref.setState(state, cb)
   }
 }
 

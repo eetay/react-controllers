@@ -26,11 +26,11 @@ export class TopComponent extends React.PureComponent {
 
   render () {
     return (
-      <div>
-        <div>{this.state.titleText}</div>
+      <div style={{'borderWidth': '3px', 'borderStyle': 'solid', 'borderColor': 'blue'}}>
+        <div style={{'color': 'blue'}}>{this.state.titleText}</div>
         <div>This is part of the toplevel component. I have access to toplevel controller</div>
         <BoxComponent name='BOX A'>
-          <div>BOX A</div>
+          <div style={{'color': 'green'}}>BOX A</div>
           <div>
             <div>I have no controller of my own</div>
             <div>But I have access to toplevel's controller</div>
@@ -45,7 +45,7 @@ export class TopComponent extends React.PureComponent {
           </button>
         </div>
         <BoxComponent name='BOX B'>
-          <div>BOX B</div>
+          <div style={{'color': 'green'}}>BOX B</div>
           <div>
             <div>I have no controller of my own</div>
             <div>But I have access to toplevel's controller</div>

@@ -5,6 +5,7 @@ export class BoxHeaderController {
     this.name = boxName
   }
   boxHeaderAction = (info) => {
+    this.setState(info)
     console.log('boxHeaderAction:', this, info)
   }
 }
@@ -18,16 +19,16 @@ export class BoxHeader extends React.PureComponent {
   }
 
   buttonClick = () => {
-    this.props.controller.setState({text: 'pressed'})
+    this.props.controller.boxHeaderAction({text: 'pressed'})
     this.props.controller.topLevelAction(this.props.name + "'s header")
   }
 
   render = () => {
     return (
-      <div>
+      <div style={{'borderWidth': '3px', 'margin': '3px', 'borderStyle': 'solid', 'borderColor': 'red'}}>
         ---BOX HEADER---
         <button type='button' onClick={this.buttonClick}>
-          controller.topLevelAction(...) ({this.state.text})
+          controller.topLevelAction(...) AND controller.boxHeaderAction(...) ({this.state.text})
         </button>
         ---BOX HEADER---
       </div>

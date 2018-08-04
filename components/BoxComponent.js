@@ -16,13 +16,10 @@ class BoxComponent extends React.PureComponent {
     console.log('BOX ' + this.props.name + ' RENDER')
     const Header = this.header
     return (
-      <div style={{'borderWidth': '3px', 'borderStyle': 'solid'}}>
-        <div style={{'borderWidth': '3px', 'borderStyle': 'solid', 'borderColor': 'red'}}>
-          <Header name={this.props.name + ' header'}>---BOX HEADER---</Header>
-        </div>
-        {this.props.children}
+      <div style={{'borderWidth': '3px', 'margin': '3px', 'borderStyle': 'solid', 'borderColor': 'green'}}>
+        <Header name={this.props.name + ' header'}>---BOX HEADER---</Header>
+        <div>{this.props.children}</div>
         <div>{this.state.text}</div>
-        <div>---BOX FOOTER---</div>
       </div>
     )
   }
