@@ -18,8 +18,8 @@ export class BoxHeader extends React.PureComponent {
   }
 
   buttonClick = () => {
+    this.props.controller.topLevelAction(this.props.name + "'s header")
     this.props.controller.setState({text: 'pressed'})
-    this.props.controller.topLevelAction('top from box ' + this.props.name + ' header')
   }
 
   render = () => {
@@ -27,7 +27,7 @@ export class BoxHeader extends React.PureComponent {
       <div>
         ---BOX HEADER---
         <button type='button'  onClick={this.buttonClick}>
-          Press to change title of TOPLVL from deep inside ({this.state.text})
+          controller.topLevelAction(...) ({this.state.text})
         </button>
         ---BOX HEADER---
       </div>
