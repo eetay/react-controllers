@@ -11,7 +11,7 @@
     "build": "NODE_ENV=production webpack --display-error-details --colors --progress --config ./webpack/webpack.prod.config.js",
     "submit-widget": "yarn clean && yarn build && node bin/widget-commands.js submit-widget",
     "lint": "./node_modules/.bin/eslint .",
-    "gh-pages": "./node_modules/.bin/gh-pages -d . --src index.html --src dist/bundle.js",
+    "gh-pages": "yarn build && ./node_modules/.bin/gh-pages -d . --src index.html dist/bundle.js",
     "clean": "rm -rf dist"
   },
   "dependencies": {
