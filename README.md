@@ -1,3 +1,5 @@
+# React Controllers
+
 This repository is experimental framework for building React based applications
 It should be treated as academic research project
 
@@ -24,12 +26,12 @@ Any React component can be wrapped with a 'withController' (higher order
 component) which adds the "nearest" controller to the props of that React
 component, allowing any React component to call controller actions
 
-## example:
+[Live Demo](https://eetay.github.io/react-controllers/index.html)
+
+### Example code:
 
 The 'withController' makes it possible for ```BoxComponent``` call to ```controller.someAction(...)```
-knowing that it will be handled by "nearest" controller, and if that controller does not have such
-action function, it will search parent controllers as well, allowing higher
-controllers to provide actions to lower UI components
+knowing that it will be handled by "nearest" controller
 
 ```javascript
 lass BoxComponent extends React.PureComponent {
@@ -59,8 +61,12 @@ lass BoxComponent extends React.PureComponent {
 
 export default withController(BoxComponent)
 ```
+Note: Since controllers inherit from one another (via __proto__), it means that if the requested action function
+is not provided by "nearest" controller, but is provided by a higher level controller,
+that action will be used. 
 
-the ```withController``` function can take a second parameter, which is a new
+### Adding a controller
+The ```withController``` function can take a second parameter, which is a new
 controller to control that part of the UI
 
 
