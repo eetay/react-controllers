@@ -20,8 +20,8 @@ module.exports = {
 		]
 	},
   output: {
-    path: parentDir + '/dist',
-    filename: 'bundle.js'
+    path: parentDir,
+    filename: './dist/bundle.js'
   },
   watch: true,
   devServer: {

@@ -51,7 +51,10 @@ export default function withController(ControlledComponent, controller) {
             controllers => {
               if (this.controller) {
                 this.controllers = [...controllers, this.controller]
-                this.controller.__proto__ = (controllers.length == 0) ? ControllerTools : controllers[controllers.length - 1]
+                Object.setPrototypeOf(
+                  this.controller,
+                  (controllers.length == 0) ? ControllerTools : controllers[controllers.length - 1]
+                )
               } else {
                 this.controllers = controllers
               }
