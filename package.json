@@ -10,6 +10,8 @@
     "create-widget": "node bin/widget-commands.js create-widget",
     "build": "NODE_ENV=production webpack --display-error-details --colors --progress --config ./webpack/webpack.prod.config.js",
     "submit-widget": "yarn clean && yarn build && node bin/widget-commands.js submit-widget",
+    "lint": "./node_modules/.bin/eslint .",
+    "gh-pages": "./node_modules/.bin/gh-pages -d . --src index.html --src dist/bundle.js",
     "clean": "rm -rf dist"
   },
   "dependencies": {
@@ -34,6 +36,7 @@
     "eslint-plugin-jsx-a11y": "6.1.0",
     "eslint-plugin-react": "7.10.0",
     "eslint-plugin-security": "1.4.0",
+    "gh-pages": "1.2.0",
     "less": "3.0.4",
     "less-loader": "4.1.0",
     "sass-loader": "7.0.3",

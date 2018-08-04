@@ -47,25 +47,25 @@ export default function withController(ControlledComponent, controller) {
     render() {
       return (
         <ControllerContext.Consumer>
-        {
-          controllers => {
-            if (this.controller) {
-              this.controllers = [...controllers, this.controller]
-              this.controller.__proto__ = (controllers.length == 0) ? ControllerTools : controllers[controllers.length - 1]
-            } else {
-              this.controllers = controllers
+          {
+            controllers => {
+              if (this.controller) {
+                this.controllers = [...controllers, this.controller]
+                this.controller.__proto__ = (controllers.length == 0) ? ControllerTools : controllers[controllers.length - 1]
+              } else {
+                this.controllers = controllers
+              }
+              this.debug('CONTROLLER CHAIN', this.controllers)
+              const moreProps = this.controller ? { ref: this.setRef } : {}
+              return (
+                <ControllerContext.Provider value={this.getControllers()}>
+                  <ControlledComponent {...this.props} {...moreProps} controller={this.getCurrentController()}>
+                    {this.props.children}
+                  </ControlledComponent>
+                </ControllerContext.Provider>
+              )
             }
-            this.debug('CONTROLLER CHAIN', this.controllers)
-            const moreProps = this.controller ? { ref: this.setRef } : {}
-            return (
-              <ControllerContext.Provider value={this.getControllers()}>
-                <ControlledComponent {...this.props} {...moreProps} controller={this.getCurrentController()}>
-                  {this.props.children}
-                </ControlledComponent>
-              </ControllerContext.Provider>
-            )
           }
-        }
         </ControllerContext.Consumer>
       )
     }

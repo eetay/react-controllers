@@ -7,7 +7,7 @@ export class TopComponentController {
     return info
   }
   topLevelAction = (info) => {
-    this.ref.setState({titleText: info})
+    this.ref.setState({ titleText: info })
   }
 }
 
@@ -28,11 +28,11 @@ export class TopComponent extends React.PureComponent {
     return (
       <div>
         {this.state.titleText}
-        <BoxComponent name="BOX A">BOX A</BoxComponent>
+        <BoxComponent name='BOX A'>BOX A</BoxComponent>
         <button type='button' onClick={this.buttonClick}>
           {this.state.buttonText}
         </button>
-        <BoxComponent name="BOX B">BOX B</BoxComponent>
+        <BoxComponent name='BOX B'>BOX B</BoxComponent>
       </div>
     )
   }
