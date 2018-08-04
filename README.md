@@ -1,6 +1,6 @@
 # React Controllers
 
-This repository is experimental framework for building React based applications
+This repository is an experimental framework for building React based applications
 It should be treated as academic research project
 
 The concept is to stay away from the heavy lifting of event-based actions
@@ -27,6 +27,8 @@ component) which adds the "nearest" controller to the props of that React
 component, allowing any React component to call controller actions
 
 [Live Demo](https://eetay.github.io/react-controllers/index.html)
+
+* This repo is linted with Codacy: [![Codacy Badge](https://api.codacy.com/project/badge/Grade/46b0b44a640549c9afce34e8b1d522d5)](https://www.codacy.com/project/eetay/react-controllers/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=eetay/react-controllers&amp;utm_campaign=Badge_Grade_Dashboard)
 
 ### Example code:
 
