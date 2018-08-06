@@ -4,12 +4,12 @@ export const ControllerContext = React.createContext([])
 
 const ControllerTools = {
   // functions all controllers should have
-  setState: function(state, cb) {
-    this.ref && this.ref.setState(state, cb)
+  setState (state, cb) {
+    if (this.ref) this.ref.setState(state, cb)
   }
 }
 
-export default function withController(ControlledComponent, controller) {
+export default function withController (ControlledComponent, controller) {
   return class extends React.PureComponent {
     constructor (props) {
       super(props)
@@ -44,16 +44,16 @@ export default function withController(ControlledComponent, controller) {
       console.log('DEBUG:', this.name, ...args)
     }
 
-    render() {
+    render () {
       return (
         <ControllerContext.Consumer>
           {
-            controllers => {
+            (controllers) => {
               if (this.controller) {
                 this.controllers = [...controllers, this.controller]
                 Object.setPrototypeOf(
                   this.controller,
-                  (controllers.length == 0) ? ControllerTools : controllers[controllers.length - 1]
+                  (controllers.length === 0) ? ControllerTools : controllers[controllers.length - 1]
                 )
               } else {
                 this.controllers = controllers

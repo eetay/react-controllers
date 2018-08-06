@@ -1,5 +1,5 @@
 import React from 'react'
-import {BoxHeader, BoxHeaderController} from './BoxHeader'
+import { BoxHeader, BoxHeaderController } from './BoxHeader'
 import withController from './withController'
 
 
@@ -13,10 +13,9 @@ class BoxComponent extends React.PureComponent {
   }
 
   render () {
-    console.log('BOX ' + this.props.name + ' RENDER')
     const Header = this.header
     return (
-      <div style={{'borderWidth': '3px', 'margin': '3px', 'borderStyle': 'solid', 'borderColor': 'green'}}>
+      <div style={{ borderWidth: '3px', margin: '3px', borderStyle: 'solid', borderColor: 'green' }}>
         <Header name={this.props.name + ' header'}>---BOX HEADER---</Header>
         <div>{this.props.children}</div>
         <div>{this.state.text}</div>
